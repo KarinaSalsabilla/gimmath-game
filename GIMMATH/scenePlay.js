@@ -39,6 +39,11 @@ const setupButton = (btn, name) => {
             ease: 'Sine.easeInOut',
             onComplete: () => {
                 btn.setScale(1.5);
+
+                if (name === 'Play') {
+                    this.scene.start('sceneAwal');
+                }
+
                 console.log(name + ' clicked!');
             }
         });
