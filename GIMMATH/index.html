@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @font-face {
+            font-family: 'MoskitoesPersonal';
+            src: url('assets/fonts/MoskitoesPersonal.ttf') format('truetype');
+        }
+
+         @font-face {
+            font-family: 'CreepsterRegular';
+            src: url('assets/fonts/CreepsterRegular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'poppins';
+            src: url('assets/fonts/poppinssemibold.ttf') format('truetype');
+        }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    canvas {
+        display: block;
+    }
+    </style>
+
+    <title>GIMMATH</title>
+    <script>
+        var layoutSize = { 'w': 800, 'h': 600 };
+        var X_POSITION;
+        var Y_POSITION;
+        var relativeSize;
+        var snd_touch = null;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+</head>
+
+<body>
+    <script src="scenePlay.js"></script>
+    <script src="sceneMenu.js"></script>
+    <script src="level.js"></script>
+    <script src="level1.js"></script>
+    <script src="level2.js"></script>
+    <script src="level3.js"></script>
+    <script src="level4.js"></script>
+    <script src="level5.js"></script>
+    <script src="sceneGameOver.js"></script>
+
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: window.innerWidth,
+            height: window.innerHeight,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false // Ganti true kalau mau lihat bounding box
+                }
+            },
+            scene: [scenePlay],
+            scale: {
+                mode: Phaser.Scale.RESIZE,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+
+</html>
