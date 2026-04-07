@@ -8,7 +8,7 @@
             src: url('assets/fonts/MoskitoesPersonal.ttf') format('truetype');
         }
 
-         @font-face {
+        @font-face {
             font-family: 'CreepsterRegular';
             src: url('assets/fonts/CreepsterRegular.ttf') format('truetype');
         }
@@ -18,16 +18,17 @@
             src: url('assets/fonts/poppinssemibold.ttf') format('truetype');
         }
 
-    html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 100%;
-    }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
 
-    canvas {
-        display: block;
-    }
+        canvas {
+            display: block;
+        }
     </style>
 
     <title>GIMMATH</title>
@@ -64,7 +65,7 @@
                     debug: false // Ganti true kalau mau lihat bounding box
                 }
             },
-            scene: [scenePlay,sceneAwal],
+            scene: [scenePlay, sceneAwal],
             scale: {
                 mode: Phaser.Scale.RESIZE,
                 autoCenter: Phaser.Scale.CENTER_BOTH
@@ -75,7 +76,16 @@
     </script>
 </body>
 
-    <div id="tutorial-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; background: transparent;">
-        <iframe id="tutor-frame" src="gameTutorial.html" style="width: 100%; height: 100%; border: none;"></iframe>
-    </div>
-</body> </html>
+<!-- POPUP -->
+<div id="tutorial-container"
+    style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; z-index:10000;">
+    <iframe src="gameTutorial.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+
+<div id="information-container"
+    style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; z-index:10000;">
+    <iframe src="information.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+</body>
+
+</html>

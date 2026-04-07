@@ -27,33 +27,41 @@ class scenePlay extends Phaser.Scene {
 
         // 🔹 FUNCTION BIAR GAK NGULANG KODE
         // 🔹 FUNCTION BUTTON
-const setupButton = (btn, name) => {
-    btn.setInteractive({ useHandCursor: true }).setScale(1.5);
+        const setupButton = (btn, name) => {
+            btn.setInteractive({ useHandCursor: true }).setScale(1.5);
 
-    btn.on('pointerdown', () => {
-        this.tweens.add({
-            targets: btn,
-            scale: 1.6, // sedikit lebih besar (dari 1.5)
-            duration: 80,
-            yoyo: true,
-            ease: 'Sine.easeInOut',
-            onComplete: () => {
-                btn.setScale(1.5);
+            btn.on('pointerdown', () => {
+                this.tweens.add({
+                    targets: btn,
+                    scale: 1.6,
+                    duration: 80,
+                    yoyo: true,
+                    ease: 'Sine.easeInOut',
+                    onComplete: () => {
+                        btn.setScale(1.5);
 
-              if (name === 'Tutorial') {
-                    const tutorDiv = document.getElementById('tutorial-container');
-                    tutorDiv.style.display = 'block';
-                }
+                        if (name === 'Tutorial') {
+                            document.getElementById('tutorial-container').style.display = 'block';
+                        }
 
-                if (name === 'Play') {
-                    this.scene.start('sceneAwal');
-                }
+                        if (name === 'Information') {
+                            document.getElementById('information-container').style.display = 'block';
+                        }
 
-                console.log(name + ' clicked!');
-            }
-        });
-    });
-};
+                        if (name === 'Play') {
+                            this.scene.start('sceneAwal');
+                        }
+
+                        if (name === 'Close') {
+                            document.getElementById('information-container').style.display = 'none';
+                            document.getElementById('tutorial-container').style.display = 'none';
+                        }
+
+                        console.log(name + ' clicked!');
+                    }
+                });
+            });
+        };
 
 
         // BUTTON PLAY
