@@ -40,6 +40,11 @@ const setupButton = (btn, name) => {
             onComplete: () => {
                 btn.setScale(1.5);
 
+              if (name === 'Tutorial') {
+                    const tutorDiv = document.getElementById('tutorial-container');
+                    tutorDiv.style.display = 'block';
+                }
+
                 if (name === 'Play') {
                     this.scene.start('sceneAwal');
                 }

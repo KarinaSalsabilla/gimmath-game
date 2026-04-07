@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tutorials UI</title>
+    <style>
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/poppinssemibold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: transparent; /* Pastikan body transparan */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Container Utama dengan efek Glassmorphism */
+        .container {
+            width: 85%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.15); /* Transparansi Putih */
+            backdrop-filter: blur(10px); /* Efek Blur di belakang */
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .left-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .circle-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+
+        .circle-btn:hover { transform: scale(1.1); }
+        .circle-btn img { width: 100%; height: 100%; }
+
+        /* Grid & Dropdown */
+        .questions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-bar {
+            background: white;
+            border-radius: 30px;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: black;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .question-bar:hover { background: #eeeeee; }
+
+        .answer-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 0 0 15px 15px;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .faq-item.active .answer-panel {
+            max-height: 150px; /* Sesuai panjang teks */
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-top: none;
+        }
+
+        .faq-item.active .arrow { transform: rotate(90deg); }
+        .arrow { transition: transform 0.3s; font-size: 18px; }
+
+        @media (max-width: 600px) { .questions-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="left-header">
+                <div class="circle-btn"><img src="assets/icon/pertanyaan.png"></div>
+                <span class="title">Game Tutorials</span>
+            </div>
+            <button class="circle-btn" id="closeBtn">
+                <img src="assets/icon/close.png" alt="Close">
+            </button>
+        </div>
+
+        <div class="questions-grid">
+            <div class="faq-item">
+                <div class="question-bar"><span>Sistem Nyawa & Waktu</span><span class="arrow">></span></div>
+                <div class="answer-panel">Kamu punya 3 nyawa. Jika salah menjawab atau waktu habis, nyawa berkurang 1. Game Over jika nyawa habis!</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question-bar"><span>Bagaimana cara bermain?</span><span class="arrow">></span></div>
+                <div class="answer-panel">Pilih jawaban yang benar dari soal yang muncul sebelum waktu habis.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question-bar"><span>Bagaimana cara menang?</span><span class="arrow">></span></div>
+                <div class="answer-panel">Kumpulkan poin sebanyak-banyaknya dengan menjawab benar secara beruntun.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question-bar"><span>Tips & Trik</span><span class="arrow">></span></div>
+                <div class="answer-panel">Jangan panik! Fokus pada angka untuk mempercepat hitungan.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi Dropdown
+        document.querySelectorAll('.question-bar').forEach(bar => {
+            bar.addEventListener('click', () => {
+                const item = bar.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Fungsi Close (Menyembunyikan Iframe di parent)
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            window.parent.document.getElementById('tutorial-container').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
