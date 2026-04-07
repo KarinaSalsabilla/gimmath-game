@@ -56,18 +56,52 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .circle-btn {
-            width: 50px;
-            height: 50px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            padding: 0;
-            transition: transform 0.2s;
+        .header-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .circle-btn:hover { transform: scale(1.1); }
-        .circle-btn img { width: 100%; height: 100%; }
+        .header-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            overflow: hidden;
+            padding: 0;
+            border: none;
+        }
+
+        .close-btn img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: scale(1.08);
+        }
 
         /* Grid & Dropdown */
         .questions-grid {
@@ -92,6 +126,7 @@
             color: black;
             font-weight: bold;
             transition: 0.3s;
+            font-weight: bold;
         }
 
         .question-bar:hover { background: #eeeeee; }
@@ -99,18 +134,23 @@
         .answer-panel {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: max-height 0.3s ease-out, padding 0.3s ease, opacity 0.3s ease;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 0 0 15px 15px;
             margin: 0 15px;
-            font-size: 14px;
+            font-size: 13.5px;
+            line-height: 1.75;
+            opacity: 0;
+            padding: 0 15px;
+            font-weight: normal;
         }
 
         .faq-item.active .answer-panel {
-            max-height: 150px; /* Sesuai panjang teks */
+            max-height: 400px;
             padding: 15px;
             border: 1px solid rgba(255,255,255,0.2);
             border-top: none;
+            opacity: 1;
         }
 
         .faq-item.active .arrow { transform: rotate(90deg); }
@@ -124,10 +164,10 @@
     <div class="container">
         <div class="header">
             <div class="left-header">
-                <div class="circle-btn"><img src="assets/icon/pertanyaan.png"></div>
+                <div class="header-icon"><img src="assets/icon/pertanyaan.png" alt="Tutorial"></div>
                 <span class="title">Game Tutorials</span>
             </div>
-            <button class="circle-btn" id="closeBtn">
+            <button class="close-btn" id="closeBtn">
                 <img src="assets/icon/close.png" alt="Close">
             </button>
         </div>
@@ -156,17 +196,22 @@
     </div>
 
     <script>
-        // Fungsi Dropdown
-        document.querySelectorAll('.question-bar').forEach(bar => {
-            bar.addEventListener('click', () => {
-                const item = bar.parentElement;
-                item.classList.toggle('active');
-            });
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pastikan semua dropdown tertutup saat halaman dibuka
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
 
-        // Fungsi Close (Menyembunyikan Iframe di parent)
-        document.getElementById('closeBtn').addEventListener('click', function() {
-            window.parent.document.getElementById('tutorial-container').style.display = 'none';
+            // Fungsi Dropdown
+            document.querySelectorAll('.question-bar').forEach(bar => {
+                bar.addEventListener('click', () => {
+                    const item = bar.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Fungsi Close (Menyembunyikan Iframe di parent)
+            document.getElementById('closeBtn').addEventListener('click', function() {
+                window.parent.document.getElementById('tutorial-container').style.display = 'none';
+            });
         });
     </script>
 </body>
